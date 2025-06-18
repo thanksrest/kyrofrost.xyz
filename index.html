@@ -57,20 +57,34 @@
   <script>
     // Countdown logic
     function updateCountdown() {
-      const targetDate = new Date("September 15, 2029 00:00:00").getTime();
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+      const now = new Date();
+      const targetDate = new Date("September 15, 2029 00:00:00");
+      const distance = targetDate.getTime() - now.getTime();
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Calculate full years
+      let years = targetDate.getFullYear() - now.getFullYear();
+      const targetThisYear = new Date(targetDate);
+      targetThisYear.setFullYear(now.getFullYear());
+      if (targetThisYear.getTime() < now.getTime()) {
+        years--;
+      }
 
-      const nowFormatted = new Date().toLocaleString();
+      // Adjust time to calculate remaining days/hours/minutes/seconds after full years
+      const adjustedNow = new Date(now);
+      adjustedNow.setFullYear(now.getFullYear() + years);
+      const adjustedDistance = targetDate - adjustedNow;
+
+      const days = Math.floor(adjustedDistance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((adjustedDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((adjustedDistance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((adjustedDistance % (1000 * 60)) / 1000);
+
+      const nowFormatted = now.toLocaleString();
 
       document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s<br><span style="font-size: 0.5em;">Current Time: ${nowFormatted}</span>`;
+        `${years}y ${days}d ${hours}h ${minutes}m ${seconds}s<br><span style="font-size: 0.5em;">Current Time: ${nowFormatted}</span>`;
     }
+
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
