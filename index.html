@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Countdown</title>
-
-  <!-- Discord Embed -->
-  <meta property="og:title" content="Countdown to 09/15/2029">
-  <meta property="og:description" content="Counting down the days with snowflakes falling in the dark.">
-  <meta property="og:image" content="https://kyrofrost.xyz/assets/countdown-preview.png">
-  <meta property="og:url" content="https://kyrofrost.xyz/">
-  <meta property="og:type" content="website">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GG.</title>
   <style>
     body {
       margin: 0;
-      background-color: #000;
+      background-color: #000000;
       color: white;
       font-family: sans-serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       overflow: hidden;
       position: relative;
-      text-align: center;
+      flex-direction: column;
     }
     #countdown {
       font-size: 3em;
       z-index: 1;
+      text-align: center;
     }
     #date {
       font-size: 1.5em;
@@ -51,55 +43,6 @@
   </style>
 </head>
 <body>
-  <div id="countdown"></div>
-  <div id="date">Target Date: 09/15/2029</div>
-
-  <script>
-    // Countdown logic
-    function updateCountdown() {
-      const now = new Date();
-      const targetDate = new Date("September 15, 2029 00:00:00");
-      const distance = targetDate.getTime() - now.getTime();
-
-      // Calculate full years
-      let years = targetDate.getFullYear() - now.getFullYear();
-      const targetThisYear = new Date(targetDate);
-      targetThisYear.setFullYear(now.getFullYear());
-      if (targetThisYear.getTime() < now.getTime()) {
-        years--;
-      }
-
-      // Adjust time to calculate remaining days/hours/minutes/seconds after full years
-      const adjustedNow = new Date(now);
-      adjustedNow.setFullYear(now.getFullYear() + years);
-      const adjustedDistance = targetDate - adjustedNow;
-
-      const days = Math.floor(adjustedDistance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((adjustedDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((adjustedDistance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((adjustedDistance % (1000 * 60)) / 1000);
-
-      const nowFormatted = now.toLocaleString();
-
-      document.getElementById("countdown").innerHTML =
-        `${years}y ${days}d ${hours}h ${minutes}m ${seconds}s<br><span style="font-size: 0.5em;">Current Time: ${nowFormatted}</span>`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Snowflake logic
-    function createSnowflake() {
-      const snowflake = document.createElement("div");
-      snowflake.classList.add("snowflake");
-      snowflake.textContent = "❄";
-      snowflake.style.left = Math.random() * 100 + "vw";
-      snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
-      snowflake.style.animationDuration = Math.random() * 5 + 5 + "s";
-      document.body.appendChild(snowflake);
-      setTimeout(() => snowflake.remove(), 10000);
-    }
-    setInterval(createSnowflake, 200);
-  </script>
+  <div id="Bye">https://kyrofrost.xyz/requiem/ashes/fade/</div>
 </body>
 </html>
